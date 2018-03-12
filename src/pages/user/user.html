@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Usuários</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-fab top right edge>
+    <button ion-fab color="light">
+      <img src="assets/imgs/icons/slide-left.png" />
+    </button>
+  </ion-fab>
+  <ion-list>
+    <ion-item>
+      <h2>Deslize para a esquerda para as opções</h2>
+    </ion-item>
+    <ion-item-sliding *ngFor="let user of users">
+      <ion-item>
+        <h2>{{ user.name }}</h2>
+        <p>{{ user.username }}</p>
+        <ion-note item-end>{{ user.enabled ? 'Ativo' : 'Inativo' }}</ion-note>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button icon-start color="primary" (click)="edit(user)">
+          <ion-icon name="create"></ion-icon>
+          Editar
+        </button>
+        <button [disabled]="isSameUser(user)" ion-button icon-start color="danger" (click)="askRemove(user)">
+          <ion-icon name="trash"></ion-icon>
+          Remover
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  <ion-fab bottom right>
+    <button ion-fab (click)="add()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>

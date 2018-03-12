@@ -1,44 +1,119 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, Events, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+import { User } from '../models/user.dto';
+
+import { AuthService } from '../services/auth.service';
+import { StorageService } from '../services/storage.service';
+import { WakeService } from '../services/wake.service';
+import { Page } from '../models/page.dto';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
+
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: string = 'HomePage';
 
-  pages: Array<{title: string, component: any}>;
+  menu: Page[];
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  user: User;
+
+  constructor(
+    public platform: Platform,
+    public statusBar: StatusBar,
+    public splashScreen: SplashScreen,
+    public alertCtrl: AlertController,
+    public events: Events,
+    public authService: AuthService,
+    public storage: StorageService,
+    public wakeService: WakeService
+  ) {
     this.initializeApp();
+  }
 
-    // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
-    ];
+  private prepare() {
+    if (this.authService.isLogged()) {
+      this.user = this.storage.getLocalUser().user;
+      this.createMenu();
+    }
+  }
 
+  private createMenu() {
+    this.menu = [];
+    this.createSuperMenu();
+    this.createAdminMenu();
+    this.createUserMenu();
+  }
+
+  private createSuperMenu() {
+    if (this.user && this.user.roles.find(role => role === "SUPER") != null) {
+    }
+  }
+
+  private createAdminMenu() {
+    if (this.user && this.user.roles.find(role => role === "ADMIN") != null) {
+      this.menu.push({
+        title: 'Usuários',
+        component: 'UserPage',
+        icon: 'users'
+      });
+    }
+  }
+
+  private createUserMenu() {
+    if (this.user && this.user.roles.find(role => role === "USER") != null) {
+      this.menu.push(
+        {
+          title: 'Proprietários',
+          component: 'OwnerPage',
+          icon: 'owners'
+        },
+        {
+          title: 'Bens',
+          component: 'AssetsPage',
+          icon: 'home'
+        },
+        {
+          title: 'Sobre',
+          component: 'InfoPage',
+          icon: 'patrimonium'
+        }
+      );
+    }
+  }
+
+  private awake() {
+    this.wakeService.awake()
+    .subscribe(
+      response => {
+        this.prepare();
+        this.events.subscribe('auth', () => {this.prepare();});
+      },
+      error => {}
+    );
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-    });
+      this.awake();
+      }
+    );
   }
 
-  openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+  logout() {
+    this.authService.logout();
+    this.nav.setRoot('HomePage');
+  }
+
+  openPage(page: Page) {
+    this.storage.incrementAccessCounter(this.user, page);
+    this.nav.push(page.component);
   }
 }

@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Proprietários</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-fab top right edge>
+    <button ion-fab color="light">
+      <img src="assets/imgs/icons/slide-left.png" />
+    </button>
+  </ion-fab>
+  <ion-list>
+    <ion-item>
+      <h2>Deslize para a esquerda para as opções</h2>
+    </ion-item>
+    <ion-item-sliding *ngFor="let owner of owners">
+      <ion-item>
+        <h2>{{ owner.name }}</h2>
+        <p>{{ owner.document }}</p>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button icon-start color="primary" (click)="edit(owner)">
+          <ion-icon name="create"></ion-icon>
+          Editar
+        </button>
+        <button ion-button icon-start color="danger" (click)="askRemove(owner)">
+          <ion-icon name="trash"></ion-icon>
+          Remover
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  <ion-fab bottom right>
+    <button ion-fab (click)="add()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>

@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Novo priprietário</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <form [formGroup]="formGroup" (ngSubmit)="save(); $event.preventDefault()">
+    <ion-item>
+      <ion-label floating>Nome *</ion-label>
+      <ion-input formControlName="name" type="text"></ion-input>
+      <p class="danger" *ngIf="formGroup.controls.name.dirty && formGroup.controls.name.errors" margin-left>Valor inválido</p>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Documento *</ion-label>
+      <ion-input formControlName="document" type="text"></ion-input>
+      <p class="danger" *ngIf="formGroup.controls.document.dirty && formGroup.controls.document.errors" margin-left>Valor inválido</p>
+    </ion-item>
+    <button ion-button block type="submit" [disabled]="formGroup.invalid">Salvar</button>
+  </form>
+  <button ion-button block outline color="secondary" (click)="back()">Voltar</button>
+</ion-content>
