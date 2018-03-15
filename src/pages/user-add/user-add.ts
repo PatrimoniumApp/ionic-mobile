@@ -15,8 +15,8 @@ export class UserAddPage {
 
   constructor(public navCtrl: NavController, public formBuilder: FormBuilder, public userService : UserService, public loadingCtrl: LoadingController) {
     this.formGroup = this.formBuilder.group({
-      username: new FormControl({value: '', disabled: false}, [Validators.required]),
-      name: new FormControl({value: '', disabled: false}, [Validators.required, Validators.minLength(5), Validators.maxLength(120)]),
+      username: new FormControl({value: '', disabled: false}, [Validators.required, Validators.email]),
+      name: new FormControl({value: '', disabled: false}, [Validators.required, Validators.minLength(5), Validators.maxLength(120)])
     });
   }
 

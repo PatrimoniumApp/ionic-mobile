@@ -6,10 +6,10 @@ import { StorageService } from '../../services/storage.service';
 
 @IonicPage()
 @Component({
-  selector: 'page-user',
-  templateUrl: 'user.html',
+  selector: 'page-users',
+  templateUrl: 'users.html',
 })
-export class UserPage {
+export class UsersPage {
 
   users: User[];
 
@@ -25,6 +25,13 @@ export class UserPage {
       },
       error => {loading.dismiss();}
     );
+  }
+
+  noUsers(): boolean {
+    if (this.users == null) {
+      return true;
+    }
+    return this.users.length == 0;
   }
 
   add() {

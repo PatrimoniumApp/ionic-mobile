@@ -1,39 +1,34 @@
-<ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Patrimonium</ion-title>
-  </ion-navbar>
+<ion-header no-border>
+  <logout-header [title]="user?.name"></logout-header>
 </ion-header>
 
-<ion-content padding>
-  <h5 *ngIf="user">Bem-vindo(a), {{ user.name }}!</h5>
+<ion-content>
   <ion-list no-lines>
-    <ion-item *ngIf="pages">
-      <h2>Mais acessados:</h2>
-      <br/>
-      <ion-card *ngFor="let access of pages">
-        <ion-item>
-          <ion-avatar item-start>
-            <img src="assets/imgs/icons/star-small.png">
-          </ion-avatar>
-          <!--h2>{{ access.page.title }}</h2-->
-          <p *ngIf="access.count == 1">1 acesso</p>
-          <p *ngIf="access.count > 1">{{ access.count }} acessos</p>
-          <button ion-button item-right clear small (click)="openPage(access.page)">        
-            Abrir&nbsp;<ion-icon name="arrow-forward"></ion-icon>
-          </button>
-        </ion-item>
-        <ion-card-content>
-          <ion-item>
-            <ion-thumbnail item-start>
-              <img src="assets/imgs/icons/{{access.page.icon}}.png">
-            </ion-thumbnail>
-            <h2>{{ access.page.title }}</h2>
-          </ion-item>
-        </ion-card-content>
-      </ion-card>
-    </ion-item>
+    <button ion-item *ngFor="let access of pages; let i = index" (click)="openPage(access.page)" detail-none>
+      <ion-thumbnail item-start>
+        <img src="assets/imgs/icons/{{access.page.icon}}.png">
+      </ion-thumbnail>
+      <h2>{{ access.page.title }}</h2>
+      <p *ngIf="access.count == 1">1 acesso</p>
+      <p *ngIf="access.count > 1">{{ access.count }} acessos</p>
+      <p>
+        <ion-icon name="star" color="star" *ngIf="i == 0"></ion-icon>
+        <ion-icon name="star" color="star" *ngIf="i == 0"></ion-icon>
+        <ion-icon name="star" color="star" *ngIf="i == 0"></ion-icon>
+        <ion-icon name="star" color="star" *ngIf="i == 0"></ion-icon>
+        <ion-icon name="star" color="star" *ngIf="i == 0"></ion-icon>
+        <ion-icon name="star" color="star" *ngIf="i == 1"></ion-icon>
+        <ion-icon name="star" color="star" *ngIf="i == 1"></ion-icon>
+        <ion-icon name="star" color="star" *ngIf="i == 1"></ion-icon>
+        <ion-icon name="star" color="star" *ngIf="i == 1"></ion-icon>
+        <ion-icon name="star" color="star" *ngIf="i == 2"></ion-icon>
+        <ion-icon name="star" color="star" *ngIf="i == 2"></ion-icon>
+        <ion-icon name="star" color="star" *ngIf="i == 2"></ion-icon>
+        <ion-icon name="star" color="star" *ngIf="i == 3"></ion-icon>
+        <ion-icon name="star" color="star" *ngIf="i == 3"></ion-icon>
+        <ion-icon name="star" color="star" *ngIf="i == 4"></ion-icon>
+      </p>
+      <ion-icon name="arrow-forward" item-end></ion-icon>
+    </button>
   </ion-list>
 </ion-content>

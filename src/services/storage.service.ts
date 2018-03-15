@@ -61,4 +61,21 @@ export class StorageService {
     }
   }
 
+  getLocalTheme(user: User) : string {
+    let localTheme = `themeOf${user.id}`;
+    let theme = localStorage.getItem(localTheme);
+    if (theme == null) {
+      return null;
+    }
+    return theme;
+  }
+
+  setLocalTheme(user: User, theme : string) {
+    let localTheme = `themeOf${user.id}`;
+    if (theme == null) {
+      localStorage.setItem(localTheme, 'patrimonium-default-theme');
+    }
+    localStorage.setItem(localTheme, theme);
+  }
+
 }

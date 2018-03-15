@@ -1,49 +1,50 @@
+import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-
+import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+
+import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { ArchiveService } from '../services/archive.service';
+import { ScrollableTabs } from '../components/scrollable-tabs/scrollable-tabs';
 import { AuthService } from '../services/auth.service';
-import { FileService } from '../services/file.service';
-import { OwnerService } from '../services/owner.service';
+import { HttpClientModule } from '@angular/common/http';
 import { StorageService } from '../services/storage.service';
 import { UserService } from '../services/user.service';
-import { WakeService } from '../services/wake.service';
-
-import { ErrorInterceptorProvider } from '../interceptors/error-interceptor';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { OwnerService } from '../services/owner.service';
 import { AuthInterceptorProvider } from '../interceptors/auth-interceptor';
+import { ErrorInterceptorProvider } from '../interceptors/error-interceptor';
+import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
   declarations: [
-    MyApp
+    MyApp,
+    TabsPage,
+    ScrollableTabs
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    ComponentsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp
+    MyApp,
+    TabsPage
   ],
   providers: [
-    ArchiveService,
+    StatusBar,
+    SplashScreen,
+    InAppBrowser,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthService,
-    FileService,
     OwnerService,
     StorageService,
     UserService,
-    WakeService,
-    StatusBar,
-    SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthInterceptorProvider,
     ErrorInterceptorProvider
   ]

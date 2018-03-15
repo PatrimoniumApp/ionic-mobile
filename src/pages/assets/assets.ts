@@ -12,7 +12,7 @@ export class AssetsPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AssetsPage');
+    console.log('ionViewDidLoad AssetPage');
   }
 
 }

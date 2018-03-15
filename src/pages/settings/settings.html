@@ -1,0 +1,17 @@
+<ion-header no-border>
+  <logout-header title="Configurações"></logout-header>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <h2>Mudar o tema</h2>
+      <ion-note item-end>
+        <button ion-button full icon-left (click)="toggle()">
+          <ion-icon name="color-palette"></ion-icon>
+          {{ theme }}
+        </button>
+      </ion-note>
+    </ion-item>
+  </ion-list>
+</ion-content>

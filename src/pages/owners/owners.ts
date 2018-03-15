@@ -6,10 +6,10 @@ import { Owner } from '../../models/owner.dto';
 
 @IonicPage()
 @Component({
-  selector: 'page-owner',
-  templateUrl: 'owner.html',
+  selector: 'page-owners',
+  templateUrl: 'owners.html',
 })
-export class OwnerPage {
+export class OwnersPage {
 
   owners: Owner[];
 
@@ -25,6 +25,13 @@ export class OwnerPage {
       },
       error => {loading.dismiss();}
     );
+  }
+
+  noOwners(): boolean {
+    if (this.owners == null) {
+      return true;
+    }
+    return this.owners.length == 0;
   }
 
   add() {

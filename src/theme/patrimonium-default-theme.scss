@@ -1,0 +1,38 @@
+.patrimonium-default-theme {
+
+  ion-content {
+    background-image: linear-gradient(color($colors, primary), color($colors, secondary));
+    background-size: cover;
+  }
+
+  ion-label {
+    color: color($colors, text-default);
+  }
+
+  ion-icon[item-end] {
+    color: color($colors, text-default);
+  }
+
+  h1, h2, h3, h4, h5, h6, p {
+    color: color($colors, text-default);
+  }
+
+  .bar-buttons,
+  .toolbar-title {
+    color: color($colors, text-default);
+  }
+
+  .tabs-md .tab-button-text {
+    color: color($colors, secondary);
+  }
+
+  .tabs-md .tab-button[aria-selected=true] .tab-button-text {
+    color: color($colors, text-default);
+    font-weight: bold;
+  }
+
+  .item-md p {
+    color: color($colors, text-default-p);
+  }
+
+}

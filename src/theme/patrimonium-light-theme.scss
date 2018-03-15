@@ -1,0 +1,39 @@
+.patrimonium-light-theme {
+  
+  ion-content {
+    background-image: linear-gradient(color($colors, light), white);
+  }
+
+  ion-label {
+    color: color($colors, text-light);
+  }
+
+  ion-icon[item-end] {
+    color: color($colors, text-light);
+  }
+
+  h1, h2, h3, h4, h5, h6, p {
+    color: color($colors, text-light);
+  }
+
+  .bar-buttons,
+  .toolbar-title {
+    color: color($colors, text-light);
+  }
+
+  .bar-button-default-md,
+  .bar-button-clear-md-default,
+  .bar-button-md-default {
+    color: color($colors, text-light);
+  }
+
+  .bar-button-default-ios,
+  .bar-button-clear-ios-default,
+  .bar-button-ios-default {
+    color: color($colors, text-light);
+  }
+
+  .item-md p {
+    color: color($colors, text-light-p);
+  }
+}

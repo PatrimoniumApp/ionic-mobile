@@ -1,0 +1,33 @@
+<ion-header no-border>
+  <logout-header title="Proprietários"></logout-header>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngIf="noOwners()" text-wrap>
+      <ion-thumbnail item-start>
+        <img src="assets/imgs/icons/owners-small.png">
+      </ion-thumbnail>
+      <h2>Sem proprietários ainda...</h2>
+      <br/>
+      <p>Clique em <ion-icon name="add-circle" style="padding-left: 5px; padding-right: 5px;"></ion-icon> para cadastrar.</p>
+    </ion-item>
+    <ion-item *ngFor="let owner of owners" detail-none>
+      <h2>{{ owner.name }}</h2>
+      <p>{{ owner.document }}</p>
+      <ion-note item-end>
+        <button ion-button (click)="edit(owner)">
+          <ion-icon name="create"></ion-icon>
+        </button>
+        <button ion-button (click)="askRemove(owner)">
+          <ion-icon name="trash"></ion-icon>
+        </button>
+      </ion-note>
+    </ion-item>
+  </ion-list>
+  <ion-fab bottom right>
+    <button ion-fab (click)="add()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>

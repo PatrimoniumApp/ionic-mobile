@@ -1,11 +1,14 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ViewChild } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 import { StorageService } from '../services/storage.service';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
+import { Nav } from 'ionic-angular';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
+
+  @ViewChild(Nav) nav: Nav;
 
   constructor(public storage: StorageService, public alertCtrl: AlertController) {}
 
@@ -37,10 +40,10 @@ export class ErrorInterceptor implements HttpInterceptor {
         }
 
         switch (errorObj.status) {
-          // case 401: {
-          //   this.handle401();
-          //   break;
-          // }
+          case 401: {
+            this.handle401();
+            break;
+          }
           case 403: {
             this.handle403();
             break;
@@ -56,6 +59,8 @@ export class ErrorInterceptor implements HttpInterceptor {
 
   handle403() {
     this.storage.setLocalUser(null);
+    console.log(this.storage.getLocalUser());
+    this.nav.setRoot('HomePage');
   }
 
   handle401() {

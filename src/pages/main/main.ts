@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, Tabs } from 'ionic-angular';
 
 import { User } from '../../models/user.dto';
 
@@ -13,6 +13,8 @@ import { Page } from '../../models/page.dto';
   templateUrl: 'main.html',
 })
 export class MainPage {
+
+  @ViewChild('ionTabs') ionTabs: Tabs;
 
   user: User;
 
@@ -30,14 +32,17 @@ export class MainPage {
         pages = pages.sort(function(a, b) {
           return (a.count > b.count) ? -1 : ((b.count > a.count) ? 1 : 0);
         });
-        this.pages = pages.slice(0, 2);
+        this.pages = pages.slice(0, 5);
       }
     }
   }
 
   openPage(page: Page) {
-    this.storage.incrementAccessCounter(this.user, page);
-    this.navCtrl.push(page.component);
+    let tabs: Tabs = this.navCtrl.parent;
+    let index = tabs._tabs.findIndex(tab => tab.root === page.component);
+    if (index > -1) {
+      tabs.select(index);
+    }
   }
 
 }

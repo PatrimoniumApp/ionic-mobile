@@ -1,0 +1,33 @@
+<ion-header no-border>
+  <logout-header title="Usuários"></logout-header>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngIf="noUsers()" text-wrap >
+      <ion-thumbnail item-start>
+        <img src="assets/imgs/icons/users-small.png">
+      </ion-thumbnail>
+      <h2>Sem usuários ainda...</h2>
+      <br/>
+      <p>Clique em <ion-icon name="add-circle" style="padding-left: 5px; padding-right: 5px;"></ion-icon> para cadastrar.</p>
+    </ion-item>
+    <ion-item *ngFor="let user of users" detail-none>
+      <h2>{{ user.name }}</h2>
+      <p>{{ user.username }}</p>
+      <ion-note item-end>
+        <button ion-button (click)="edit(user)">
+          <ion-icon name="create"></ion-icon>
+        </button>
+        <button ion-button (click)="askRemove(user)">
+          <ion-icon name="trash"></ion-icon>
+        </button>
+      </ion-note>
+    </ion-item>
+  </ion-list>
+  <ion-fab bottom right>
+    <button ion-fab (click)="add()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>

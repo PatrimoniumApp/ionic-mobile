@@ -1,5 +1,9 @@
 page-home {
 
+  .master {
+    background-color: color($colors, light);
+  }
+
   img {
     align-self: center;
     margin: auto;

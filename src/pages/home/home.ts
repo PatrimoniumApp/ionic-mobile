@@ -5,6 +5,8 @@ import { Credentials } from '../../models/credentials.dto';
 
 import { AuthService } from '../../services/auth.service';
 
+import { TabsPage } from '../tabs/tabs';
+
 @IonicPage()
 @Component({
   selector: 'page-home',
@@ -27,7 +29,7 @@ export class HomePage {
             this.authService.login(response.headers.get('Authorization'));
             setTimeout(() => {
               loading.dismiss();
-              this.navCtrl.setRoot('MainPage');
+              this.navCtrl.setRoot(TabsPage);
             }, 1200);
           },
           error => { loading.dismiss(); }
@@ -48,7 +50,7 @@ export class HomePage {
           this.authService.login(response.headers.get('Authorization'));
           setTimeout(() => {
             loading.dismiss();
-            this.navCtrl.setRoot('MainPage');
+            this.navCtrl.setRoot(TabsPage);
           }, 1200);
         },
         error => {loading.dismiss();}

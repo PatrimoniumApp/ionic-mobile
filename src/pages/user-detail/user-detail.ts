@@ -24,7 +24,7 @@ export class UserDetailPage {
     this.minYear = today.getFullYear() - 1;
     this.maxYear = today.getFullYear() + 1;
     this.formGroup = this.formBuilder.group({
-      username: new FormControl({value: this.user.username, disabled: true}, [Validators.required]),
+      username: new FormControl({value: this.user.username, disabled: true}, [Validators.required, Validators.email]),
       name: new FormControl({value: this.user.name, disabled: false}, [Validators.required, Validators.minLength(3), Validators.maxLength(120)]),
       enabled: new FormControl({value: this.user.enabled, disabled: false}, [Validators.required]),
       expire: new FormControl({value: this.expire(), disabled: this.expireDisabled()}, [Validators.required])

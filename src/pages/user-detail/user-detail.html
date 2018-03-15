@@ -1,29 +1,29 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>{{ user.name }}</ion-title>
-  </ion-navbar>
+<ion-header no-border>
+  <logout-header [title]="user?.name"></logout-header>
 </ion-header>
 
 <ion-content padding>
-  <form [formGroup]="formGroup" (ngSubmit)="save(); $event.preventDefault()">
-    <ion-item>
-      <ion-label floating>E-mail</ion-label>
-      <ion-input formControlName="username" type="text"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label floating>Nome *</ion-label>
-      <ion-input formControlName="name" type="text"></ion-input>
-      <p class="danger" *ngIf="formGroup.controls.name.dirty && formGroup.controls.name.errors" margin-left>Valor inválido</p>
-    </ion-item>
-    <ion-item>
-      <ion-label floating>Validade</ion-label>
-      <ion-datetime displayFormat="DD/MM/YYYY" formControlName="expire" min="{{minYear}}" max="{{maxYear}}" cancelText="Cancelar" doneText="Ok"></ion-datetime>
-    </ion-item>
-    <ion-item>
-      <ion-label>Ativo</ion-label>
-      <ion-toggle formControlName="enabled"></ion-toggle>
-    </ion-item>
-    <button ion-button block type="submit" [disabled]="formGroup.invalid">Salvar</button>
-  </form>
-  <button ion-button block outline color="secondary" (click)="back()">Voltar</button>
+  <ion-list>
+    <form [formGroup]="formGroup" (ngSubmit)="save(); $event.preventDefault()">
+      <ion-item>
+        <ion-label floating>E-mail *</ion-label>
+        <ion-input formControlName="username" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Nome *</ion-label>
+        <ion-input formControlName="name" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Validade</ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY" formControlName="expire" min="{{minYear}}" max="{{maxYear}}" cancelText="Cancelar" doneText="Ok"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>Ativo</ion-label>
+        <ion-toggle formControlName="enabled"></ion-toggle>
+      </ion-item>
+      <br/>
+      <button ion-button block type="submit" [disabled]="formGroup.invalid">Salvar</button>
+    </form>
+  </ion-list>
+  <button ion-button block color="secondary" (click)="back()">Voltar</button>
 </ion-content>
