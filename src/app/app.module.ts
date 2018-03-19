@@ -3,8 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import { TabsPage } from '../pages/tabs/tabs';
-
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -22,7 +20,6 @@ import { ComponentsModule } from '../components/components.module';
 @NgModule({
   declarations: [
     MyApp,
-    TabsPage,
     ScrollableTabs
   ],
   imports: [
@@ -33,8 +30,7 @@ import { ComponentsModule } from '../components/components.module';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    TabsPage
+    MyApp
   ],
   providers: [
     StatusBar,
