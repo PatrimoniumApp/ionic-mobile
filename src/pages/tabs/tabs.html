@@ -1,3 +1,0 @@
-<ion-tabs *ngIf="tabs" #ionTabs [scrollable-tabs]="ionTabs" tabsPlacement="top">
-  <ion-tab *ngFor="let page of tabs" [root]="page.component" [tabTitle]="page.title" (ionSelect)="selectTab(page)"></ion-tab>
-</ion-tabs>

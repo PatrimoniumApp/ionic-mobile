@@ -20,7 +20,15 @@ export class MainPage {
 
   pages: any[];
 
-  constructor(public navCtrl: NavController, public authService: AuthService, public storage: StorageService) {}
+  tabs: Page[];
+
+  public selectedPage: Page;
+  public showLeftButton: boolean;
+  public showRightButton: boolean;
+
+  constructor(public navCtrl: NavController, public authService: AuthService, public storage: StorageService) {
+    this.user = this.storage.getLocalUser().user;
+  }
 
   ionViewWillEnter() {
     this.user = this.storage.getLocalUser().user;
@@ -38,11 +46,10 @@ export class MainPage {
   }
 
   openPage(page: Page) {
-    let tabs: Tabs = this.navCtrl.parent;
-    let index = tabs._tabs.findIndex(tab => tab.root === page.component);
-    if (index > -1) {
-      tabs.select(index);
+    if (page.component != 'MainPage') {
+      this.storage.incrementAccessCounter(this.user, page);
     }
+    this.navCtrl.setRoot(page.component, {page: page});
   }
 
 }

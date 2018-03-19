@@ -17,6 +17,7 @@
   }
 
   .bar-buttons,
+  .toolbar .toolbar-md,
   .toolbar-title {
     color: color($colors, text-light);
   }
@@ -36,4 +37,34 @@
   .item-md p {
     color: color($colors, text-light-p);
   }
+
+  .filters {
+
+    ion-col {
+        text-align: center;
+        font-size: 1.6rem;
+        line-height: 1.6rem;
+   
+        ion-icon {
+            color: color($colors, text-light-p);
+        }
+   
+        &.col-with-arrow {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+   
+    p {
+        color: color($colors, text-light);
+        margin: 0;
+        font-size: 1.6rem;
+        line-height: 1.6rem;
+    }
+   
+    .selected {
+     text-decoration: underline;
+    }
+   }
 }

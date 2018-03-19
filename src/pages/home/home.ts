@@ -29,7 +29,7 @@ export class HomePage {
             this.authService.login(response.headers.get('Authorization'));
             setTimeout(() => {
               loading.dismiss();
-              this.navCtrl.setRoot(TabsPage);
+              this.navCtrl.setRoot('MainPage');
             }, 1200);
           },
           error => { loading.dismiss(); }
@@ -50,7 +50,7 @@ export class HomePage {
           this.authService.login(response.headers.get('Authorization'));
           setTimeout(() => {
             loading.dismiss();
-            this.navCtrl.setRoot(TabsPage);
+            this.navCtrl.setRoot('MainPage');
           }, 1200);
         },
         error => {loading.dismiss();}

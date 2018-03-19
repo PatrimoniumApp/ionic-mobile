@@ -29,12 +29,15 @@ export class MyApp {
   }
 
   startTheme() {
-    this.user = this.storage.getLocalUser().user;
-    let localTheme = this.storage.getLocalTheme(this.user);
-    if (localTheme != null) {
-      this.theme = localTheme;
+    let localUser = this.storage.getLocalUser();
+    if (localUser != null) {
+      this.user = localUser.user;
+      let localTheme = this.storage.getLocalTheme(this.user);
+      if (localTheme != null) {
+        this.theme = localTheme;
+      }
+      this.storage.setLocalTheme(this.user, this.theme);
     }
-    this.storage.setLocalTheme(this.user, this.theme);
   }
 
   toggleTheme() {

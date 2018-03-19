@@ -22,17 +22,38 @@
     color: color($colors, text-default);
   }
 
-  .tabs-md .tab-button-text {
-    color: color($colors, secondary);
-  }
-
-  .tabs-md .tab-button[aria-selected=true] .tab-button-text {
-    color: color($colors, text-default);
-    font-weight: bold;
-  }
-
   .item-md p {
     color: color($colors, text-default-p);
   }
+
+  .filters {
+
+    ion-col {
+        text-align: center;
+        font-size: 1.6rem;
+        line-height: 1.6rem;
+   
+        ion-icon {
+            color: color($colors, text-default-p);
+        }
+   
+        &.col-with-arrow {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+   
+    p {
+        color: color($colors, text-default-p);
+        margin: 0;
+        font-size: 1.6rem;
+        line-height: 1.6rem;
+    }
+   
+    .selected {
+     text-decoration: underline;
+    }
+   }
 
 }

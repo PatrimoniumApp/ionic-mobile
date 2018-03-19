@@ -8,3 +8,14 @@
     </button>
   </ion-buttons>
 </ion-navbar>
+<ion-toolbar>
+  <ion-row class="filters">
+    <ion-col no-padding col-12>
+        <ion-slides [slidesPerView]="slidesPerView">
+            <ion-slide (click)="filterData(page)" *ngFor="let page of tabs">
+                <p [class.selected]="selectedPage?.component === page.component">{{ page.title }}</p>
+            </ion-slide>
+        </ion-slides>
+    </ion-col>
+  </ion-row>
+</ion-toolbar>
