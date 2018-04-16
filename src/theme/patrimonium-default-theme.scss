@@ -6,7 +6,7 @@
   }
 
   ion-label {
-    color: color($colors, text-default);
+    color: color($colors, text-default-p);
   }
 
   ion-icon[item-end] {
@@ -23,6 +23,26 @@
   }
 
   .item-md p {
+    color: color($colors, text-default-p);
+  }
+
+  .datetime-text {
+    color: color($colors, text-default-p);
+  }
+
+  .item-ios {
+    color: color($colors, text-default-p);
+  }
+
+  .item-input .label-md {
+    color: color($colors, text-default-p);
+  }
+
+  .item-input-has-focus .label-md[floating], .input-has-focus .label-md[floating] {
+    color: color($colors, text-default-p);
+  }
+
+  .item-md.item-input .item-inner {
     color: color($colors, text-default-p);
   }
 
@@ -54,6 +74,10 @@
     .selected {
      text-decoration: underline;
     }
+   }
+
+   .text-input {
+     color: color($colors, text-default-p);
    }
 
 }

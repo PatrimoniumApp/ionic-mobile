@@ -1,22 +1,23 @@
 <ion-header no-border>
-  <menu-header title="Proprietários"></menu-header>
+  <menu-header title="Bens"></menu-header>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-item *ngIf="noOwners()" text-wrap>
+    <ion-item *ngIf="noRealStates()" text-wrap>
       <ion-thumbnail item-start>
-        <img src="assets/imgs/icons/owners-small.png">
+        <img src="assets/imgs/icons/real-states-small.png">
       </ion-thumbnail>
-      <h2>Sem proprietários ainda...</h2>
+      <h2>Sem bens ainda...</h2>
       <br/>
       <p>Clique em <ion-icon name="add-circle" style="padding-left: 5px; padding-right: 5px;"></ion-icon> para cadastrar.</p>
     </ion-item>
-    <ion-item *ngFor="let owner of owners" detail-none>
-      <h2>{{ owner.name }}</h2>
-      <p>{{ owner.document }}</p>
+    <ion-item *ngFor="let realState of realStates" detail-none>
+      <h2>{{ realState.name }}</h2>
+      <p>{{ realState.registration }}</p>
+      <p>{{ realState.owner.name }}</p>
       <ion-note item-end>
-        <button ion-button (click)="options($event, owner)">
+        <button ion-button (click)="options($event, realState)">
           <ion-icon name="more"></ion-icon>
         </button>
       </ion-note>

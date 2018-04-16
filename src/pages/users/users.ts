@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, LoadingController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, LoadingController, AlertController, PopoverController } from 'ionic-angular';
 import { User } from '../../models/user.dto';
 import { UserService } from '../../services/user.service';
 import { StorageService } from '../../services/storage.service';
@@ -13,7 +13,7 @@ export class UsersPage {
 
   users: User[];
 
-  constructor(public navCtrl: NavController, public userService: UserService, public storage: StorageService, public loadingCtrl: LoadingController, public alertCtrl: AlertController) {}
+  constructor(public navCtrl: NavController, public userService: UserService, public storage: StorageService, public loadingCtrl: LoadingController, public alertCtrl: AlertController, public popoverCtrl: PopoverController) {}
 
   ionViewWillEnter() {
     let loading = this.loadingCtrl.create();
@@ -38,46 +38,27 @@ export class UsersPage {
     this.navCtrl.push('UserAddPage');
   }
 
-  edit(user: User) {
-    this.navCtrl.push('UserDetailPage', {user: user});
+  isSameUser(user: User) : boolean {
+    return this.storage.getLocalUser().user.id === user.id;
   }
 
-  askRemove(user: User) {
-    this.alertCtrl.create({
-      title: 'Confirmação',
-      message: `Deseja remover o usuário ${user.name}?`,
-      buttons: [
-        {
-          text: 'Não',
-          role: 'cancel'
-        },
-        {
-          text: 'Sim',
-          handler: () => {
-            this.remove(user);
-          }
-        }
-      ]
-    }).present();
-  }
-
-  remove(user: User) {
-    let loading = this.loadingCtrl.create();
-    loading.present();
-    this.userService.remove(user)
-      .subscribe(() => {
+  options(event, user: User) {
+    let data = {
+      user: user,
+      callRemove: () => {
         var index = this.users.findIndex(obj => obj.id === user.id);
         if (index > -1) {
           this.users.splice(index, 1);
-          loading.dismiss();
         }
       },
-      error => {loading.dismiss();}
-    );
-  }
-
-  isSameUser(user: User) : boolean {
-    return this.storage.getLocalUser().user.id === user.id;
+      callEdit: () => {
+        this.navCtrl.push('UserDetailPage', {user: user});
+      }
+    }
+    this.popoverCtrl.create('UsersMenuPage', {data: data})
+    .present({
+      ev: event
+    });
   }
 
 }

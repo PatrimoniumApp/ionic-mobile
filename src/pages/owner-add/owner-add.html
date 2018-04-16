@@ -1,5 +1,9 @@
 <ion-header no-border>
-  <logout-header title="Novo proprietário"></logout-header>
+  <ion-navbar>
+    <ion-title>
+      Novo proprietário
+    </ion-title>
+  </ion-navbar>
 </ion-header>
 
 <ion-content padding>
@@ -8,12 +12,10 @@
       <ion-item>
         <ion-label floating>Nome *</ion-label>
         <ion-input formControlName="name" type="text"></ion-input>
-        <p class="danger" *ngIf="formGroup.controls.name.dirty && formGroup.controls.name.errors" margin-left>Valor inválido</p>
       </ion-item>
       <ion-item>
         <ion-label floating>Documento *</ion-label>
         <ion-input formControlName="document" type="text"></ion-input>
-        <p class="danger" *ngIf="formGroup.controls.document.dirty && formGroup.controls.document.errors" margin-left>Valor inválido</p>
       </ion-item>
       <br/>
       <button ion-button block type="submit" [disabled]="formGroup.invalid">Salvar</button>

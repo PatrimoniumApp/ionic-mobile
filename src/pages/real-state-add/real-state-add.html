@@ -1,7 +1,7 @@
 <ion-header no-border>
   <ion-navbar>
     <ion-title>
-      {{ owner?.name }}
+      Novo bem
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -10,12 +10,20 @@
   <ion-list>
     <form [formGroup]="formGroup" (ngSubmit)="save(); $event.preventDefault()">
       <ion-item>
+        <ion-label floating>Proprietário *</ion-label>
+        <ion-select formControlName="ownerId" okText="Ok" cancelText="Cancelar">
+          <ion-option *ngFor="let owner of owners" [value]="owner.id">
+            {{owner.name}}
+          </ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
         <ion-label floating>Nome *</ion-label>
         <ion-input formControlName="name" type="text"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label floating>Documento *</ion-label>
-        <ion-input formControlName="document" type="text"></ion-input>
+        <ion-label floating>Matrícula *</ion-label>
+        <ion-input formControlName="registration" type="text"></ion-input>
       </ion-item>
       <br/>
       <button ion-button block type="submit" [disabled]="formGroup.invalid">Salvar</button>

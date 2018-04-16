@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { IonicModule } from 'ionic-angular';
 
-import { LogoutHeaderComponent } from './logout-header/logout-header';
+import { MenuHeaderComponent } from './menu-header/menu-header';
 
 @NgModule({
-	declarations: [LogoutHeaderComponent],
+	declarations: [MenuHeaderComponent],
 	imports: [IonicModule],
-	exports: [LogoutHeaderComponent]
+	exports: [MenuHeaderComponent]
 })
 export class ComponentsModule {}

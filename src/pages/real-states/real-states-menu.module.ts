@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { OwnersPage } from './owners';
+import { RealStatesMenuPage } from './real-states-menu';
 import { ComponentsModule } from '../../components/components.module';
 
 @NgModule({
   declarations: [
-    OwnersPage
+    RealStatesMenuPage
   ],
   imports: [
-    IonicPageModule.forChild(OwnersPage),
+    IonicPageModule.forChild(RealStatesMenuPage),
     ComponentsModule
   ],
 })
-export class OwnersPageModule {}
+export class RealStatesMenuPageModule {}

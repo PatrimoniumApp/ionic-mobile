@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { OwnersPage } from './owners';
+import { OwnersMenuPage } from './owners-menu';
 import { ComponentsModule } from '../../components/components.module';
 
 @NgModule({
   declarations: [
-    OwnersPage
+    OwnersMenuPage
   ],
   imports: [
-    IonicPageModule.forChild(OwnersPage),
+    IonicPageModule.forChild(OwnersMenuPage),
     ComponentsModule
   ],
 })
-export class OwnersPageModule {}
+export class OwnersMenuPageModule {}

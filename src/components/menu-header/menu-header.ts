@@ -6,10 +6,10 @@ import { Page } from '../../models/page.dto';
 import { StorageService } from '../../services/storage.service';
 
 @Component({
-  selector: 'logout-header',
-  templateUrl: 'logout-header.html'
+  selector: 'menu-header',
+  templateUrl: 'menu-header.html'
 })
-export class LogoutHeaderComponent {
+export class MenuHeaderComponent {
 
   @Input() title: string;
 
@@ -104,8 +104,8 @@ export class LogoutHeaderComponent {
         },
         {
           title: 'Bens',
-          component: 'AssetsPage',
-          icon: 'assets-small'
+          component: 'RealStatesPage',
+          icon: 'real-states-small'
         },
         {
           title: 'Configurações',

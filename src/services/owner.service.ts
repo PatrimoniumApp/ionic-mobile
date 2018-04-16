@@ -13,19 +13,19 @@ export class OwnerService {
   return this.http.get<Owner[]>(`${API_CONFIG.baseUrl}/owners`);
  }
 
- remove(user: Owner) {
-  return this.http.delete(`${API_CONFIG.baseUrl}/owners/${user.id}`);
+ remove(owner: Owner) {
+  return this.http.delete(`${API_CONFIG.baseUrl}/owners/${owner.id}`);
  }
 
- edit(user: Owner) {
+ edit(owner: Owner) {
   return this.http.put(
-   `${API_CONFIG.baseUrl}/owners/${user.id}`, user, { observe: 'response', responseType: 'text' }
+   `${API_CONFIG.baseUrl}/owners/${owner.id}`, owner, { observe: 'response', responseType: 'text' }
   );
  }
 
- insert(user: Owner) {
+ insert(owner: Owner) {
   return this.http.post(
-   `${API_CONFIG.baseUrl}/owners`, user, { observe: 'response', responseType: 'text' }
+   `${API_CONFIG.baseUrl}/owners`, owner, { observe: 'response', responseType: 'text' }
   );
  }
 

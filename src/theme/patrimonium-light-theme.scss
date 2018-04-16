@@ -38,6 +38,10 @@
     color: color($colors, text-light-p);
   }
 
+  .item-input .label-md {
+    color: color($colors, text-light-p);
+  }
+
   .filters {
 
     ion-col {
@@ -67,4 +71,8 @@
      text-decoration: underline;
     }
    }
+
+   .text-input {
+    color: color($colors, text-default-p);
+  }
 }

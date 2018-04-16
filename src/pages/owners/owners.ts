@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, LoadingController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, LoadingController, AlertController, PopoverController } from 'ionic-angular';
 
 import { OwnerService } from '../../services/owner.service';
 import { Owner } from '../../models/owner.dto';
@@ -13,7 +13,7 @@ export class OwnersPage {
 
   owners: Owner[];
 
-  constructor(public navCtrl: NavController, public ownerService: OwnerService, public loadingCtrl: LoadingController, public alertCtrl: AlertController) {}
+  constructor(public navCtrl: NavController, public ownerService: OwnerService, public loadingCtrl: LoadingController, public alertCtrl: AlertController, public popoverCtrl: PopoverController) {}
 
   ionViewWillEnter() {
     let loading = this.loadingCtrl.create();
@@ -38,42 +38,23 @@ export class OwnersPage {
     this.navCtrl.push('OwnerAddPage');
   }
 
-  edit(owner: Owner) {
-    this.navCtrl.push('OwnerDetailPage', {owner: owner});
-  }
-
-  askRemove(owner: Owner) {
-    this.alertCtrl.create({
-      title: 'Confirmação',
-      message: `Deseja remover o proprietário ${owner.name}?`,
-      buttons: [
-        {
-          text: 'Não',
-          role: 'cancel'
-        },
-        {
-          text: 'Sim',
-          handler: () => {
-            this.remove(owner);
-          }
-        }
-      ]
-    }).present();
-  }
-
-  remove(owner: Owner) {
-    let loading = this.loadingCtrl.create();
-    loading.present();
-    this.ownerService.remove(owner)
-      .subscribe(() => {
+  options(event, owner: Owner) {
+    let data = {
+      owner: owner,
+      callRemove: () => {
         var index = this.owners.findIndex(obj => obj.id === owner.id);
         if (index > -1) {
           this.owners.splice(index, 1);
-          loading.dismiss();
         }
       },
-      error => {loading.dismiss();}
-    );
+      callEdit: () => {
+        this.navCtrl.push('OwnerDetailPage', {owner: owner});
+      }
+    }
+    this.popoverCtrl.create('OwnersMenuPage', {data: data})
+    .present({
+      ev: event
+    });
   }
 
 }

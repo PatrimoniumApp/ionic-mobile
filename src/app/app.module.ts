@@ -6,7 +6,6 @@ import { MyApp } from './app.component';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { ScrollableTabs } from '../components/scrollable-tabs/scrollable-tabs';
 import { AuthService } from '../services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { StorageService } from '../services/storage.service';
@@ -16,11 +15,11 @@ import { OwnerService } from '../services/owner.service';
 import { AuthInterceptorProvider } from '../interceptors/auth-interceptor';
 import { ErrorInterceptorProvider } from '../interceptors/error-interceptor';
 import { ComponentsModule } from '../components/components.module';
+import { RealStateService } from '../services/real-state.service';
 
 @NgModule({
   declarations: [
-    MyApp,
-    ScrollableTabs
+    MyApp
   ],
   imports: [
     BrowserModule,
@@ -37,6 +36,7 @@ import { ComponentsModule } from '../components/components.module';
     SplashScreen,
     InAppBrowser,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    RealStateService,
     AuthService,
     OwnerService,
     StorageService,

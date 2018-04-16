@@ -1,5 +1,5 @@
 <ion-header no-border>
-  <logout-header title="Usuários"></logout-header>
+  <menu-header title="Usuários"></menu-header>
 </ion-header>
 
 <ion-content>
@@ -16,11 +16,8 @@
       <h2>{{ user.name }}</h2>
       <p>{{ user.username }}</p>
       <ion-note item-end>
-        <button ion-button (click)="edit(user)">
-          <ion-icon name="create"></ion-icon>
-        </button>
-        <button ion-button (click)="askRemove(user)">
-          <ion-icon name="trash"></ion-icon>
+        <button ion-button (click)="options($event, user)">
+          <ion-icon name="more"></ion-icon>
         </button>
       </ion-note>
     </ion-item>
